@@ -20,7 +20,7 @@ using namespace boost::numeric;
 using namespace pyublas;
 
 double logPenalty(const double x){
-	return log(fabs(x) + 1e-300);
+	return log(x * x + 1e-300);
 }
 
 // ----------------------------------------------------------------------------

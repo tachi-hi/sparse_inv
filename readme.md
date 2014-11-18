@@ -16,11 +16,11 @@ Given `y` and `A` we estimate the unknown vector `x`.
 
 This program solves the problem by minimizing following objective function.
 
-`|| y - Ax ||_2^2 + w * sum_i (log (|x_i| + e))`
+`U = || y - Ax ||_2^2 + w * sum_i (log (x_i^2 + e))`
 
 where `w` is the weight constant and `e` is a very small constant (such as `1e-300`).
 
 This program minimizes the objective function by coordinate descent.
-
+(By solving `\partial U / \partial x_i = 0` w.r.t. `x_i` we can derive an updating rule for each coordinate.)
 
 
