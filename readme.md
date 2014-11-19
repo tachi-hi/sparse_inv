@@ -45,7 +45,7 @@ Then two graphs will be displayed (compared with LASSO in `scikit-learn`)
 
 ## Some trivial facts (memo for me)
 
-Note that log penalty `1 + p/2 log (x^2 + exp(-p/2) )` approximates `lp` norm quite finely when `p approx 0`
+Note that log penalty `1 + p/2 log (x^2 + exp(-2/p) )` approximates `lp` norm quite finely when `p approx 0`
 
 ## Relevant Articles
 + G. Gasso and A. Rakotomamonjy and S. Canu "Recovering sparse signals with a certain family of non-convex penalties and DC programming" IEEE Trans Sig Proc, 57(12), pp. 4686-4698, 2009
