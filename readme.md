@@ -23,4 +23,23 @@ where `w` is the weight constant and `e` is a very small constant (such as `1e-3
 This program minimizes the objective function by coordinate descent.
 (By solving `\partial U / \partial x_i = 0` w.r.t. `x_i` we can derive an updating rule for each coordinate.)
 
+## Usage
+### Setup
+
+One should install following
+
++ Python and libraries
+    + `numpy`, `matplotlib`, `scikit-learn`, 
++ PyUblas https://pypi.python.org/pypi/PyUblas
+    + Follow the instruction http://documen.tician.de/pyublas/installing.html
++ C++ compliler and Boost
+
+### Run
+Then type following,
+
+    python run.py
+
+Then two graphs will be displayed (compared with LASSO in `scikit-learn`)
++ sparseness-error plot
++ estimated `x`
 
