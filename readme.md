@@ -32,6 +32,7 @@ One should install following
     + `numpy`, `matplotlib`, `scikit-learn`, 
 + PyUblas https://pypi.python.org/pypi/PyUblas
     + Follow the instruction http://documen.tician.de/pyublas/installing.html
+    + see also http://d.hatena.ne.jp/saket/20120411/1334147735
 + C++ compliler and Boost
 
 ### Run
