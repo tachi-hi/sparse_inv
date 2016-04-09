@@ -28,12 +28,19 @@ This program minimizes the objective function by coordinate descent.
 
 One should install following
 
-+ Python and libraries
-    + `numpy`, `matplotlib`, `scikit-learn`, 
-+ PyUblas https://pypi.python.org/pypi/PyUblas
+
++ C++ compliler and Boost
+    + `libboost-python-dev` is required to build `pyublas`
++ Python and libraries (using `pip` etc)
+    + `numpy`, `matplotlib`, `scikit-learn`, `pyublas`
++ PyUblas Manual Install
+    + https://pypi.python.org/pypi/PyUblas
     + Follow the instruction http://documen.tician.de/pyublas/installing.html
     + see also http://d.hatena.ne.jp/saket/20120411/1334147735
-+ C++ compliler and Boost
+
+Go to the cpp directory, and run the `makefile`
+
+
 
 ### Run
 Then type following,
