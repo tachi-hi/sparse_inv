@@ -6,7 +6,6 @@ import matplotlib.pyplot as pyplot
 import numpy as np
 from sklearn import linear_model as lm # scikit learn (ridge, lasso)
 
-import pyublas # This is always required when using the module that uses the PyUblas
 import cpp.myTest as mt
 
 #----------------------------------------------------------------------------------------
@@ -36,8 +35,8 @@ def genData(seed, n, m, k, amp, noiseRate):
 	A = A / np.sqrt(sum(A * A))
 
 	y = np.dot(A, x)
-	xx = sum(x * x); yy = sum(y * y); 
-	
+	xx = sum(x * x); yy = sum(y * y);
+
 	# add noise
 	noise = myRandom(m) * amp * noiseRate
 	snr = 10 * np.log(sum(y**2)/sum(noise**2))/np.log(10)
@@ -47,7 +46,7 @@ def genData(seed, n, m, k, amp, noiseRate):
 
 	y = y + noise
 	return [y, A, x]
-		
+
 #----------------------------------------------------------------------------------------
 def LASSO(A, y, w): # scikit learn
 	lasso = lm.Lasso(alpha = w)
@@ -89,7 +88,7 @@ if __name__ == '__main__':
 	amp = 10
 	m = (int)(lowerBound(n,k))
 	noiseRate = 0.1
-	
+
 	# Create Data
 	[y, A, x_truth] = genData(seed, n, m, k, amp, noiseRate)
 
@@ -114,7 +113,7 @@ if __name__ == '__main__':
 	# LOG PENALTY
 	xs_2, l0s_2, ps_2, errs_2 = LOGPExec(A, y, wlist)
 	fm = dataDisp(wlist, l0s_2, errs_2, ps_2, n, k)
-	
+
 	# plot 1
 	pyplot.clf()
 	pyplot.xlabel("Number of Nonzero elements ($|\bm{x}|_0$)", fontsize=20)
@@ -124,7 +123,7 @@ if __name__ == '__main__':
 	pyplot.yticks(fontsize=16)
 
 	pyplot.plot(l0s_1, errs_1,  "-x", label = "LASSO");
-	pyplot.plot(l0s_2, errs_2,  "-x", label="LOG Penalty"); 
+	pyplot.plot(l0s_2, errs_2,  "-x", label="LOG Penalty");
 
 	pyplot.legend(loc="upper right")
 	pyplot.show()
@@ -139,10 +138,7 @@ if __name__ == '__main__':
 
 	pyplot.plot(x_truth, "o", label = "Ground Truth");
 	pyplot.plot(xs_1[13], "o", label = "LASSO");
-	pyplot.plot(xs_2[17], "o", label="LOG Penalty"); 
+	pyplot.plot(xs_2[17], "o", label="LOG Penalty");
 
 	pyplot.legend(loc="upper right")
 	pyplot.show()
-
-
-
