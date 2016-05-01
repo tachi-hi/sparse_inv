@@ -1,23 +1,8 @@
-#include<Python.h>
-#include<numpy/arrayobject.h>
 
-#include<boost/python.hpp>
-#include<boost/python/numeric.hpp>
-#include<boost/python/extract.hpp>
-
-#include<boost/numeric/ublas/vector.hpp>
-#include<pyublas/numpy.hpp>
-
-#include <iostream>
-#include <cmath>
-#include <vector>
-#include <algorithm>
-
+#include "proc.h"
 
 using namespace std;
-using namespace boost::python;
 using namespace boost::numeric;
-using namespace pyublas;
 
 double logPenalty(const double x){
 	return log(x * x + 1e-300);
@@ -51,9 +36,9 @@ LOGP(
 		const boost::numeric::ublas::vector<double> &x
 		) -> double
 	{
-		double Xix = 0; 
+		double Xix = 0;
 		for(unsigned int i = 0; i != Xi.size2(); ++i)
-			if(i != j) 
+			if(i != j)
 				Xix += Xi(i,j) * x(i);
 
 		return (yA(j) - Xix) / Xi(j,j);
@@ -61,13 +46,13 @@ LOGP(
 
 	// -------------------------------------------------------
 	const auto compute_Delta = [&](
-		const double m_k, 
+		const double m_k,
 		const unsigned int k
 		) -> double
 	{
-		double Xix = 0; 
+		double Xix = 0;
 		for(unsigned int i = 0; i != Xi.size2(); ++i)
-			if(i != k) 
+			if(i != k)
 				Xix += Xi(i,k) * x(i);
 
 		const double logp = logPenalty( m_k );
@@ -78,7 +63,7 @@ LOGP(
 	// -------------------------------------------------------
 	for(int it = 0; it != iter; ++it){
 
-		random_shuffle( foreach_array.begin(), foreach_array.end() ); 
+		random_shuffle( foreach_array.begin(), foreach_array.end() );
 
 		for(auto ind = foreach_array.begin(); ind != foreach_array.end(); ++ind)
 		{
@@ -101,13 +86,3 @@ LOGP(
 	}
 	return x;
 }
-
-// ----------------------------------------------------------------------------
-BOOST_PYTHON_MODULE( myTest ){
-	numeric::array::set_module_and_type( "numpy", "ndarray" );
-
-	boost::python::def( "logp", &LOGP );
-	import_array();
-}
-
-
